@@ -3,55 +3,67 @@ import MenuClient from "@/components/menu/menu-client";
 const menuData = {
   appetizers: [
     {
-      name: "Crispy Calamari",
-      description: "Lightly fried, served with a spicy marinara and lemon aioli.",
-      price: "$18",
+      name: "Pesarattu",
+      description: "A crispy crepe made from green gram, served with ginger chutney.",
+      price: "₹80",
     },
     {
-      name: "Burrata & Prosciutto",
-      description: "Heirloom tomatoes, balsamic glaze, and fresh basil.",
-      price: "$22",
+      name: "Mirapakaya Bajji",
+      description: "Spicy chili fritters, a popular street food snack.",
+      price: "₹60",
     },
     {
-      name: "Tuna Tartare",
-      description: "Avocado, soy-lime dressing, and taro chips.",
-      price: "$24",
+      name: "Punugulu",
+      description: "Deep-fried crispy snack made with rice and urad dal batter.",
+      price: "₹70",
     },
   ],
   mainCourses: [
     {
-      name: "Seared Scallops",
-      description: "With saffron risotto and a citrus buerre blanc.",
-      price: "$32",
+      name: "Gongura Mamsam",
+      description: "A tangy and spicy lamb curry made with fresh sorrel leaves.",
+      price: "₹380",
     },
     {
-      name: "Filet Mignon (8oz)",
-      description: "Served with potato gratin, asparagus, and a red wine reduction.",
-      price: "$55",
+      name: "Natu Kodi Pulusu",
+      description: "Flavorful country chicken curry in a traditional tamarind-based gravy.",
+      price: "₹350",
     },
     {
-      name: "Handmade Pappardelle",
-      description: "With a slow-braised wild boar ragu and shaved parmesan.",
-      price: "$29",
+      name: "Gutti Vankaya Kura",
+      description: "Andhra-style stuffed eggplant with a peanut and spice filling.",
+      price: "₹280",
     },
     {
-      name: "Pan-Seared Salmon",
-      description: "Crispy skin salmon with a lentil and vegetable medley.",
-      price: "$34",
+      name: "Royyala Iguru",
+      description: "A semi-dry and spicy prawn fry cooked with onions and spices.",
+      price: "₹420",
     },
   ],
   desserts: [
     {
-      name: "Chocolate Lava Cake",
-      description: "Molten center, served with vanilla bean ice cream.",
-      price: "$14",
+      name: "Qubani ka Meetha",
+      description: "A classic Hyderabadi dessert made from dried apricots.",
+      price: "₹150",
     },
     {
-      name: "Tiramisu",
-      description: "Classic Italian dessert with espresso and mascarpone.",
-      price: "$12",
+      name: "Pootharekulu",
+      description: "Delicate, paper-thin sweet rolls made from rice starch, ghee, and sugar.",
+      price: "₹120",
+    },
+     {
+      name: "Bobbatlu",
+      description: "Sweet flatbread stuffed with a delicious filling of lentils and jaggery.",
+      price: "₹100",
     },
   ],
+  drinks: [
+    {
+        name: "Kallu (Toddy)",
+        description: "A traditional, slightly fermented palm wine.",
+        price: "₹90"
+    }
+  ]
 };
 
 export default function MenuPage() {
