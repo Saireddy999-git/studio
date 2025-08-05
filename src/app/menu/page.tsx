@@ -7,7 +7,7 @@ const menuData = {
       description: "A crispy crepe made from green gram, served with ginger chutney.",
       price: "₹80",
       image: {
-        src: "https://images.unsplash.com/photo-1606491413844-6a8c39de3a2d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://i.imgur.com/G5g2U0a.jpg",
         aiHint: "pesarattu dosa",
       },
     },
@@ -16,7 +16,7 @@ const menuData = {
       description: "Spicy chili fritters, a popular street food snack.",
       price: "₹60",
       image: {
-        src: "https://plus.unsplash.com/premium_photo-1695026431958-b0e271a361e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://i.imgur.com/gK9x2j3.jpg",
         aiHint: "chili fritters",
       },
     },
@@ -25,7 +25,7 @@ const menuData = {
       description: "Deep-fried crispy snack made with rice and urad dal batter.",
       price: "₹70",
       image: {
-        src: "https://plus.unsplash.com/premium_photo-1669642055182-538d388647a6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://i.imgur.com/7H4T8lY.jpg",
         aiHint: "fried dumplings",
       },
     },
@@ -36,7 +36,7 @@ const menuData = {
       description: "A tangy and spicy lamb curry made with fresh sorrel leaves.",
       price: "₹380",
       image: {
-        src: "https://images.unsplash.com/photo-1604329221293-8a313d54d245?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://i.imgur.com/sY9tX2f.jpg",
         aiHint: "lamb curry",
       },
     },
@@ -45,7 +45,7 @@ const menuData = {
       description: "Flavorful country chicken curry in a traditional tamarind-based gravy.",
       price: "₹350",
        image: {
-        src: "https://images.unsplash.com/photo-1565557623262-b27e252489a1?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://i.imgur.com/wV1pQ9R.jpg",
         aiHint: "chicken curry",
       },
     },
@@ -54,7 +54,7 @@ const menuData = {
       description: "Andhra-style stuffed eggplant with a peanut and spice filling.",
       price: "₹280",
       image: {
-        src: "https://images.unsplash.com/photo-1620404443265-d81b83a04a37?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://i.imgur.com/n5J6X7r.jpg",
         aiHint: "stuffed eggplant curry"
       }
     },
@@ -63,7 +63,7 @@ const menuData = {
       description: "A semi-dry and spicy prawn fry cooked with onions and spices.",
       price: "₹420",
       image: {
-        src: "https://images.unsplash.com/photo-1625535336825-6972614defa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://i.imgur.com/z6E5P1m.jpg",
         aiHint: "prawn fry",
       },
     },
@@ -74,7 +74,7 @@ const menuData = {
       description: "A classic Hyderabadi dessert made from dried apricots.",
       price: "₹150",
       image: {
-        src: "https://plus.unsplash.com/premium_photo-1675237624237-f958a43f87b8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://i.imgur.com/R3tY4sS.jpg",
         aiHint: "apricot dessert",
       },
     },
@@ -83,7 +83,7 @@ const menuData = {
       description: "Delicate, paper-thin sweet rolls made from rice starch, ghee, and sugar.",
       price: "₹120",
       image: {
-        src: "https://images.unsplash.com/photo-1626513723228-5ae5555138a0?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://i.imgur.com/O6L8Z1T.jpg",
         aiHint: "sweet rolls",
       },
     },
@@ -92,7 +92,7 @@ const menuData = {
       description: "Sweet flatbread stuffed with a delicious filling of lentils and jaggery.",
       price: "₹100",
       image: {
-        src: "https://images.unsplash.com/photo-1598214886618-931f68745163?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://i.imgur.com/k9D7X8p.jpg",
         aiHint: "sweet flatbread",
       },
     },
@@ -103,7 +103,7 @@ const menuData = {
         description: "A traditional, slightly fermented palm wine.",
         price: "₹90",
         image: {
-            src: "https://images.unsplash.com/photo-1551019106-03f0d26ea339?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            src: "https://i.imgur.com/J3v4W5x.jpg",
             aiHint: "palm wine"
         }
     }
