@@ -6,22 +6,22 @@ export default function About() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="text-4xl md:text-5xl font-bold font-headline">Our Story</h2>
+            <h2 className="text-4xl md:text-5xl font-bold font-headline">From a Dream to Your Table</h2>
             <p className="mt-4 text-lg text-muted-foreground">
-              Founded in 2010, The Savory Spoon was born from a desire to blend traditional recipes with a modern culinary approach. Our philosophy is simple: use the freshest, locally-sourced ingredients to create dishes that are both comforting and exciting.
+              The Savory Spoon began with a simple dream. Our founder, Sai, a young man from a middle-class background, envisioned a place where exquisite food could be enjoyed by everyone. At just 21 years old, with unwavering support from his family, he turned that dream into a reality.
             </p>
             <p className="mt-4 text-lg text-muted-foreground">
-              Our chefs, led by the acclaimed Chef Antoine Dubois, bring a world of experience to our kitchen. Every plate that leaves our kitchen is a testament to our passion for food and our commitment to quality. We invite you to join us for an unforgettable dining experience.
+              Our philosophy is a reflection of Sai's journey: blending humble, traditional roots with a modern culinary approach. We believe in creating dishes that are both comforting and exciting, using the freshest ingredients to craft an unforgettable dining experience. Every plate we serve is a testament to passion, perseverance, and the power of family.
             </p>
           </div>
           <div className="w-full h-full flex justify-center">
              <Image
                 src="https://placehold.co/600x800.png"
-                alt="Our head chef in the kitchen"
+                alt="The elegant interior of The Savory Spoon"
                 width={500}
                 height={700}
                 className="rounded-lg shadow-xl object-cover"
-                data-ai-hint="chef portrait"
+                data-ai-hint="posh restaurant interior"
             />
           </div>
         </div>
