@@ -24,14 +24,14 @@ const featuredDishes = [
     tag: "Fan Favorite"
   },
   {
-    name: "Palakova",
-    description: "A traditional Indian sweet made from solidified, sweetened milk.",
-    price: "$10",
+    name: "Guvvalacheruvu Palakova",
+    description: "The famous milk sweet from Guvvalacheruvu, known for its unique taste and texture.",
+    price: "₹100",
     image: {
-      src: "https://placehold.co/600x400.png",
+      src: "https://content3.jdmagicbox.com/v2/comp/kadapa/j2/9999p8562.8562.220316014102.m6j2/catalogue/guvvula-cheruvu-special-pala-kovva-guvvalachervu-kadapa-sweet-shops-FI5gn8hcRZ.jpg",
       aiHint: "palakova sweet"
     },
-    tag: "Dessert"
+    tag: "Authentic Special"
   }
 ];
 

@@ -33,6 +33,12 @@ const nextConfig: NextConfig = {
         hostname: 't0.gstatic.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'content3.jdmagicbox.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },
