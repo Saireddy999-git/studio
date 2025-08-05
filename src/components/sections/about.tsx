@@ -7,12 +7,12 @@ export default function About() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div className="w-full h-full flex justify-center">
              <Image
-                src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="The elegant interior of Mudu Kalalu"
                 width={500}
                 height={700}
                 className="rounded-lg shadow-xl object-cover"
-                data-ai-hint="elegant restaurant interior"
+                data-ai-hint="indian restaurant interior"
             />
           </div>
           <div>
