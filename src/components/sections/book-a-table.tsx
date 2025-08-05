@@ -293,18 +293,15 @@ export default function BookATable() {
                   )}
                 />
 
-                <Controller
-                  control={form.control}
-                  name="tableId"
-                  render={({ field }) => <input type="hidden" {...field} />}
-                />
-                
                 <FormField
                     control={form.control}
                     name="tableId"
-                    render={() => (
-                        <FormItem>
-                          <FormMessage className="text-center" />
+                    render={({ field }) => (
+                        <FormItem className="h-0">
+                          <FormControl>
+                            <Input type="hidden" {...field} />
+                          </FormControl>
+                          <FormMessage className="text-center pt-2" />
                         </FormItem>
                     )}
                 />
@@ -327,5 +324,3 @@ export default function BookATable() {
     </section>
   );
 }
-
-    
