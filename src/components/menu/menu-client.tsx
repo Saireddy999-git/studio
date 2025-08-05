@@ -16,10 +16,9 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
+  DialogTrigger,
 } from "@/components/ui/dialog";
-import { getWinePairingSuggestions, WinePairingOutput } from "@/ai/flows/wine-pairing-suggestions";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { getRecipe, RecipeOutput } from "@/ai/flows/recipe-generator";
 import { Loader2 } from "lucide-react";
 import Image from "next/image";
 
@@ -44,73 +43,81 @@ interface MenuClientProps {
   menu: Menu;
 }
 
-function WinePairingForm({ dish, onResult, onLoadingChange }: { dish: MenuItem, onResult: (result: WinePairingOutput | null, error: string | null) => void, onLoadingChange: (loading: boolean) => void }) {
-  const [preferences, setPreferences] = useState("");
+function RecipeDialog({ dish }: { dish: MenuItem }) {
+  const [recipe, setRecipe] = useState<RecipeOutput | null>(null);
+  const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleFetchRecipe = async () => {
+    if (recipe) return; // Don't fetch if already loaded
     setIsLoading(true);
-    onLoadingChange(true);
-    onResult(null, null);
+    setError(null);
 
     try {
-      const result = await getWinePairingSuggestions({
-        dishDescription: `${dish.name}: ${dish.description}`,
-        userPreferences: preferences,
+      const result = await getRecipe({
+        dishName: dish.name,
+        dishDescription: dish.description,
       });
-      onResult(result, null);
-    } catch (error) {
-      console.error(error);
-      onResult(null, "Sorry, we couldn't find a pairing at this time. Please try again later.");
+      setRecipe(result);
+    } catch (err) {
+      console.error(err);
+      setError("Sorry, we couldn't fetch the recipe at this time. Please try again later.");
     } finally {
       setIsLoading(false);
-      onLoadingChange(false);
     }
   };
-  
+
   return (
-     <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-            <Label htmlFor="preferences">Any wine preferences? (optional)</Label>
-            <Textarea
-              id="preferences"
-              value={preferences}
-              onChange={(e) => setPreferences(e.target.value)}
-              placeholder="e.g., 'I prefer red wines', 'Something not too sweet'"
-            />
-        </div>
-        <Button type="submit" disabled={isLoading} className="w-full">
-            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            Find Pairing
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline" onClick={handleFetchRecipe}>
+          How it's Made
         </Button>
-     </form>
-  )
+      </DialogTrigger>
+      <DialogContent className="max-h-[80vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle className="font-headline text-2xl">How to make {dish.name}</DialogTitle>
+          <DialogDescription>
+            Our chefs share the secret to this delicious dish.
+          </DialogDescription>
+        </DialogHeader>
+        {isLoading && (
+            <div className="flex justify-center items-center p-8">
+                <Loader2 className="mr-2 h-8 w-8 animate-spin" />
+                <span>Generating Recipe...</span>
+            </div>
+        )}
+        {error && (
+            <div className="mt-4 p-4 border rounded-lg bg-destructive/10 text-destructive">
+            <p>{error}</p>
+            </div>
+        )}
+        {recipe && (
+          <div className="mt-4 space-y-6">
+            <div>
+              <h4 className="font-bold text-lg">Ingredients:</h4>
+              <ul className="list-disc list-inside space-y-1 mt-2 text-muted-foreground">
+                {recipe.ingredients.map((ingredient) => (
+                  <li key={ingredient}>{ingredient}</li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-bold text-lg">Steps:</h4>
+              <ol className="list-decimal list-inside space-y-2 mt-2 text-muted-foreground">
+                {recipe.steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+            </div>
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
+  );
 }
 
-
 export default function MenuClient({ menu }: MenuClientProps) {
-  const [selectedDish, setSelectedDish] = useState<MenuItem | null>(null);
-  const [pairingResult, setPairingResult] = useState<WinePairingOutput | null>(null);
-  const [pairingError, setPairingError] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleGetPairing = (dish: MenuItem) => {
-    setSelectedDish(dish);
-    setPairingResult(null);
-    setPairingError(null);
-  };
-
-  const handleModalClose = () => {
-    if (!isLoading) {
-      setSelectedDish(null);
-    }
-  }
-
-  const handleResult = (result: WinePairingOutput | null, error: string | null) => {
-    setPairingResult(result);
-    setPairingError(error);
-  }
 
   const renderMenuCategory = (title: string, items: MenuItem[] | undefined) => {
     if (!items || items.length === 0) return null;
@@ -138,9 +145,7 @@ export default function MenuClient({ menu }: MenuClientProps) {
               </CardContent>
               <CardFooter className="flex justify-between items-center p-6 pt-0">
                 <span className="text-lg font-bold text-primary">{item.price}</span>
-                <Button variant="outline" onClick={() => handleGetPairing(item)}>
-                  Wine Pairing
-                </Button>
+                <RecipeDialog dish={item} />
               </CardFooter>
             </Card>
           ))}
@@ -163,38 +168,6 @@ export default function MenuClient({ menu }: MenuClientProps) {
           {renderMenuCategory("Traditional Drinks", menu.drinks)}
         </div>
       </section>
-
-      <Dialog open={!!selectedDish} onOpenChange={(open) => !open && handleModalClose()}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="font-headline text-2xl">Wine Pairing for {selectedDish?.name}</DialogTitle>
-            <DialogDescription>
-              Let our AI sommelier suggest the perfect wine to complement your dish.
-            </DialogDescription>
-          </DialogHeader>
-          {selectedDish && (
-             <WinePairingForm dish={selectedDish} onResult={handleResult} onLoadingChange={setIsLoading} />
-          )}
-
-          {pairingResult && (
-            <div className="mt-4 space-y-4 p-4 border rounded-lg bg-card">
-                <h4 className="font-bold text-lg">Our Suggestions:</h4>
-                <ul className="list-disc list-inside space-y-1 text-primary">
-                    {pairingResult.wineSuggestions.map(wine => <li key={wine}>{wine}</li>)}
-                </ul>
-                <h4 className="font-bold text-lg pt-2">Why they pair well:</h4>
-                <p className="text-muted-foreground">{pairingResult.reasoning}</p>
-            </div>
-          )}
-
-          {pairingError && (
-             <div className="mt-4 p-4 border rounded-lg bg-destructive/10 text-destructive">
-                <p>{pairingError}</p>
-            </div>
-          )}
-
-        </DialogContent>
-      </Dialog>
     </>
   );
 }
