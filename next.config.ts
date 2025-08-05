@@ -69,6 +69,12 @@ const nextConfig: NextConfig = {
         hostname: 'www.awesomecuisine.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'static.toiimg.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

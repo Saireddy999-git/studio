@@ -54,7 +54,7 @@ const menuData = {
       description: "Andhra-style stuffed eggplant with a peanut and spice filling.",
       price: "₹280",
       image: {
-        src: "https://i.imgur.com/n5J6X7r.jpg",
+        src: "https://static.toiimg.com/thumb/81907975.cms?imgsize=373318&width=800&height=800",
         aiHint: "stuffed eggplant curry"
       }
     },
