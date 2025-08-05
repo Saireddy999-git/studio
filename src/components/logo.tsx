@@ -8,7 +8,7 @@ export function Logo() {
         <UtensilsCrossed className="h-6 w-6" />
       </div>
       <span className="text-2xl font-headline font-bold text-primary">
-        The Savory Spoon
+        Mudu Kalalu
       </span>
     </Link>
   );

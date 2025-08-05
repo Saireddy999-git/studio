@@ -6,7 +6,7 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 
 export const metadata: Metadata = {
-  title: 'The Savory Spoon',
+  title: 'Mudu Kalalu',
   description: 'Exquisite dining, memorable moments.',
 };
 
