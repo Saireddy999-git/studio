@@ -6,9 +6,9 @@ const featuredDishes = [
   {
     name: "Karam Dosa",
     description: "A spicy and crispy crepe from South India, smeared with a fiery red chutney.",
-    price: "$16",
+    price: "₹50",
     image: {
-      src: "https://placehold.co/600x400.png",
+      src: "https://vismaifood.com/storage/app/uploads/public/39b/c7d/3bf/thumb__1200_0_0_0_auto.jpg",
       aiHint: "karam dosa"
     },
     tag: "Spicy Special"
