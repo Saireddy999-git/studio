@@ -26,4 +26,9 @@ export const ReservationEmail: React.FC<Readonly<ReservationEmailProps>> = ({
       </li>
       <li>
         <strong>Message:</strong>
-        <br
+        <br />
+        {message}
+      </li>
+    </ul>
+  </div>
+);

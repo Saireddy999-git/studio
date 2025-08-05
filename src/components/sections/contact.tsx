@@ -8,7 +8,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { handleReservation } from "@/ai/flows/reservation-flow";
 import {
   Form,
   FormControl,
@@ -44,28 +43,23 @@ export default function Contact() {
   const { isSubmitting } = form.formState;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const result = await handleReservation(values);
-      toast({
-        title: "Reservation Sent!",
-        description: result.confirmation,
-      });
-      form.reset();
-    } catch (error) {
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: "There was a problem with your reservation. Please try again.",
-      });
-    }
+    // This is a placeholder for a general contact form submission.
+    // You can integrate this with any email service or backend.
+    console.log(values);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    toast({
+        title: "Message Sent!",
+        description: "Thank you for contacting us. We will get back to you shortly.",
+    });
+    form.reset();
   }
 
   return (
-    <section id="contact" className="py-12 md:py-24 bg-background">
+    <section id="contact" className="py-12 md:py-24 bg-card">
       <div className="container mx-auto px-4 md:px-6">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold font-headline">Contact & Reservations</h2>
-          <p className="text-lg text-muted-foreground mt-2">We'd love to hear from you. Reach out for inquiries or to book your table.</p>
+          <h2 className="text-4xl md:text-5xl font-bold font-headline">Contact Us</h2>
+          <p className="text-lg text-muted-foreground mt-2">We'd love to hear from you. Reach out for any inquiries.</p>
         </div>
         <div className="grid md:grid-cols-2 gap-12">
           <div className="space-y-6">
@@ -124,7 +118,7 @@ export default function Contact() {
                       <FormLabel>Message</FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Your message or reservation request..."
+                          placeholder="Your message..."
                           {...field}
                         />
                       </FormControl>
@@ -143,3 +137,4 @@ export default function Contact() {
       </div>
     </section>
   );
+}

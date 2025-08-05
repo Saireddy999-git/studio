@@ -33,7 +33,7 @@ export default function Header() {
         </nav>
         <div className="hidden md:block">
           <Button asChild>
-            <a href="/#contact">Reservations</a>
+            <a href="/#book-a-table">Reservations</a>
           </Button>
         </div>
         <button
@@ -65,7 +65,7 @@ export default function Header() {
               </Link>
             ))}
              <Button asChild size="lg" onClick={() => setIsOpen(false)}>
-                <a href="/#contact">Reservations</a>
+                <a href="/#book-a-table">Reservations</a>
             </Button>
           </nav>
         </div>

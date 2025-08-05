@@ -25,7 +25,7 @@ export default function Hero() {
             <Link href="/menu">View Our Menu</Link>
           </Button>
           <Button asChild size="lg" variant="secondary">
-            <a href="/#contact">Make a Reservation</a>
+            <a href="/#book-a-table">Make a Reservation</a>
           </Button>
         </div>
       </div>
