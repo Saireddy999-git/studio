@@ -5,7 +5,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { MapPin, Phone, Mail, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import {
@@ -16,6 +15,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { handleReservation } from "@/ai/flows/reservation-flow";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -23,9 +23,6 @@ const formSchema = z.object({
   }),
   email: z.string().email({
     message: "Please enter a valid email.",
-  }),
-  message: z.string().min(10, {
-    message: "Message must be at least 10 characters.",
   }),
 });
 
@@ -36,22 +33,31 @@ export default function Contact() {
     defaultValues: {
       name: "",
       email: "",
-      message: "",
     },
   });
 
   const { isSubmitting } = form.formState;
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // This is a placeholder for a general contact form submission.
-    // You can integrate this with any email service or backend.
-    console.log(values);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    toast({
+    try {
+      const result = await handleReservation({
+        ...values,
+        message: "General inquiry from contact form.",
+      });
+      toast({
         title: "Message Sent!",
-        description: "Thank you for contacting us. We will get back to you shortly.",
-    });
-    form.reset();
+        description: result.confirmation,
+      });
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description:
+          "There was a problem sending your message. Please try again.",
+      });
+    }
   }
 
   return (
@@ -105,22 +111,6 @@ export default function Contact() {
                       <FormLabel>Email</FormLabel>
                       <FormControl>
                         <Input placeholder="your@email.com" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="message"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Message</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          placeholder="Your message..."
-                          {...field}
-                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
