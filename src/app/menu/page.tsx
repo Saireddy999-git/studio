@@ -16,7 +16,7 @@ const menuData = {
       description: "Spicy chili fritters, a popular street food snack.",
       price: "₹60",
       image: {
-        src: "https://images.unsplash.com/photo-1607439366136-3c0a5f750a98?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://plus.unsplash.com/premium_photo-1695026431958-b0e271a361e2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         aiHint: "chili fritters",
       },
     },
@@ -63,7 +63,7 @@ const menuData = {
       description: "A semi-dry and spicy prawn fry cooked with onions and spices.",
       price: "₹420",
       image: {
-        src: "https://images.unsplash.com/photo-1625535336825-69726914defa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+        src: "https://images.unsplash.com/photo-1625535336825-6972614defa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
         aiHint: "prawn fry",
       },
     },
