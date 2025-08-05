@@ -28,8 +28,16 @@ const TableReservationOutputSchema = z.object({
 });
 export type TableReservationOutput = z.infer<typeof TableReservationOutputSchema>;
 
+let resend: Resend;
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const initializeResend = () => {
+  if (!resend) {
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error('Missing RESEND_API_KEY environment variable.');
+    }
+    resend = new Resend(process.env.RESEND_API_KEY);
+  }
+};
 
 export async function handleTableReservation(
   input: TableReservationInput
@@ -44,6 +52,7 @@ const tableReservationFlow = ai.defineFlow(
     outputSchema: TableReservationOutputSchema,
   },
   async (input) => {
+    initializeResend();
     const message = `Reservation for ${input.guests} guest(s) on ${input.date} at ${input.time}. Table: ${input.tableId}.`;
     
     try {

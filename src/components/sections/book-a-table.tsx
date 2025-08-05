@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -161,15 +162,6 @@ export default function BookATable() {
                 Entrance
                </div>
             </div>
-             <FormField
-                control={form.control}
-                name="tableId"
-                render={() => (
-                    <FormItem>
-                    <FormMessage className="mt-2 text-center" />
-                    </FormItem>
-                )}
-                />
           </div>
           <div>
             <h3 className="text-2xl font-bold font-headline mb-4">
@@ -306,6 +298,16 @@ export default function BookATable() {
                   name="tableId"
                   render={({ field }) => <input type="hidden" {...field} />}
                 />
+                
+                <FormField
+                    control={form.control}
+                    name="tableId"
+                    render={() => (
+                        <FormItem>
+                          <FormMessage className="text-center" />
+                        </FormItem>
+                    )}
+                />
 
                 <Button
                   type="submit"
@@ -325,3 +327,5 @@ export default function BookATable() {
     </section>
   );
 }
+
+    

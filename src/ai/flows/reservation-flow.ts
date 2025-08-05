@@ -26,7 +26,16 @@ const ReservationOutputSchema = z.object({
 export type ReservationOutput = z.infer<typeof ReservationOutputSchema>;
 
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+let resend: Resend;
+
+const initializeResend = () => {
+  if (!resend) {
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error('Missing RESEND_API_KEY environment variable.');
+    }
+    resend = new Resend(process.env.RESEND_API_KEY);
+  }
+};
 
 export async function handleReservation(
   input: ReservationInput
@@ -41,6 +50,7 @@ const reservationFlow = ai.defineFlow(
     outputSchema: ReservationOutputSchema,
   },
   async (input) => {
+    initializeResend();
     try {
       await resend.emails.send({
         from: 'Mudu Kalalu <onboarding@resend.dev>',
