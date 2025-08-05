@@ -27,6 +27,12 @@ const nextConfig: NextConfig = {
         hostname: 'vismaifood.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 't0.gstatic.com',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

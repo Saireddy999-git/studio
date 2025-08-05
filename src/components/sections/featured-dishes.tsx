@@ -14,11 +14,11 @@ const featuredDishes = [
     tag: "Spicy Special"
   },
   {
-    name: "Chicken Wings Biriyani",
-    description: "Flavorful biriyani rice topped with succulent, spicy chicken wings.",
-    price: "$25",
+    name: "Chicken Biriyani",
+    description: "A rich and flavorful layered rice dish with tender chicken.",
+    price: "₹369",
     image: {
-      src: "https://placehold.co/600x400.png",
+      src: "https://t0.gstatic.com/images?q=tbn:ANd9GcR4b1vBR19SIbVv5sAWOxpkxeMI4Ens_2uS1VDMJYG1zAA1vNjeBwgmoy6f4zrgVd-qk9TnZmug",
       aiHint: "chicken biriyani"
     },
     tag: "Fan Favorite"
@@ -53,7 +53,7 @@ export default function FeaturedDishes() {
                     alt={dish.name}
                     width={600}
                     height={400}
-                    className="w-full h-auto"
+                    className="w-full h-auto object-cover aspect-[3/2]"
                     data-ai-hint={dish.image.aiHint}
                   />
                   <Badge variant="secondary" className="absolute top-4 right-4 bg-accent text-accent-foreground">{dish.tag}</Badge>
