@@ -230,7 +230,7 @@ export default function BookATable() {
                         render={({ field }) => (
                             <FormItem>
                             <FormLabel>Time</FormLabel>
-                                <Select onValuechange={field.onChange} defaultValue={field.value}>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                     <SelectTrigger>
                                         <SelectValue placeholder="Select a time slot" />
