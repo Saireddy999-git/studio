@@ -16,7 +16,7 @@ const menuData = {
       description: "Spicy chili fritters, a popular street food snack.",
       price: "₹60",
       image: {
-        src: "https://i.imgur.com/gK9x2j3.jpg",
+        src: "https://i.pinimg.com/736x/29/aa/98/29aa98e2f7ce65e03fe27823c0ba2489.jpg",
         aiHint: "chili fritters",
       },
     },
