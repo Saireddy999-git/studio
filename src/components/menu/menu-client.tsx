@@ -21,11 +21,16 @@ import { getWinePairingSuggestions, WinePairingOutput } from "@/ai/flows/wine-pa
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Loader2 } from "lucide-react";
+import Image from "next/image";
 
 interface MenuItem {
   name: string;
   description: string;
   price: string;
+  image: {
+    src: string;
+    aiHint: string;
+  };
 }
 
 interface Menu {
@@ -114,13 +119,24 @@ export default function MenuClient({ menu }: MenuClientProps) {
         <h2 className="text-3xl md:text-4xl font-bold font-headline my-8 text-center">{title}</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {items.map((item) => (
-            <Card key={item.name} className="flex flex-col">
-              <CardHeader>
-                <CardTitle className="font-headline">{item.name}</CardTitle>
-                <CardDescription>{item.description}</CardDescription>
+            <Card key={item.name} className="flex flex-col overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <CardHeader className="p-0">
+                <div className="relative">
+                  <Image
+                    src={item.image.src}
+                    alt={item.name}
+                    width={600}
+                    height={400}
+                    className="w-full h-auto object-cover aspect-[3/2]"
+                    data-ai-hint={item.image.aiHint}
+                  />
+                </div>
               </CardHeader>
-              <CardContent className="flex-grow"></CardContent>
-              <CardFooter className="flex justify-between items-center">
+              <CardContent className="p-6 flex-grow">
+                 <CardTitle className="font-headline">{item.name}</CardTitle>
+                <CardDescription className="mt-2">{item.description}</CardDescription>
+              </CardContent>
+              <CardFooter className="flex justify-between items-center p-6 pt-0">
                 <span className="text-lg font-bold text-primary">{item.price}</span>
                 <Button variant="outline" onClick={() => handleGetPairing(item)}>
                   Wine Pairing
