@@ -83,7 +83,7 @@ const menuData = {
       description: "Delicate, paper-thin sweet rolls made from rice starch, ghee, and sugar.",
       price: "₹120",
       image: {
-        src: "https://i.imgur.com/O6L8Z1T.jpg",
+        src: "https://vellankifoods.com/cdn/shop/products/pootharekulu_dry_fruits_Pack_of_5pcs.jpg?v=1680181329",
         aiHint: "sweet rolls",
       },
     },
