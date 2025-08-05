@@ -36,7 +36,7 @@ const menuData = {
       description: "A tangy and spicy lamb curry made with fresh sorrel leaves.",
       price: "₹380",
       image: {
-        src: "https://i.imgur.com/sY9tX2f.jpg",
+        src: "https://www.awesomecuisine.com/wp-content/uploads/2007/11/Gongura-Mamsam.jpg",
         aiHint: "lamb curry",
       },
     },
