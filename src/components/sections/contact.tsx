@@ -21,7 +21,7 @@ export default function Contact() {
             </div>
             <div className="flex items-center gap-4">
               <Phone className="h-6 w-6 text-primary" />
-              <span>+91 7013235224</span>
+              <span>+91 7036094121</span>
             </div>
             <div className="flex items-center gap-4">
               <Mail className="h-6 w-6 text-primary" />
