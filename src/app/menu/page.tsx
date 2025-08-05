@@ -74,7 +74,7 @@ const menuData = {
       description: "A classic Hyderabadi dessert made from dried apricots.",
       price: "₹150",
       image: {
-        src: "https://i.imgur.com/R3tY4sS.jpg",
+        src: "https://www.yummefy.com/uploads/1545806025Khubani-Ka-Meetha-Recipe-Yummefy.jpg",
         aiHint: "apricot dessert",
       },
     },
