@@ -4,34 +4,34 @@ import { Badge } from "@/components/ui/badge";
 
 const featuredDishes = [
   {
-    name: "Seared Scallops",
-    description: "With saffron risotto and a citrus buerre blanc.",
-    price: "$32",
+    name: "Karam Dosa",
+    description: "A spicy and crispy crepe from South India, smeared with a fiery red chutney.",
+    price: "$16",
     image: {
       src: "https://placehold.co/600x400.png",
-      aiHint: "seared scallops risotto"
+      aiHint: "karam dosa"
     },
-    tag: "Chef's Special"
+    tag: "Spicy Special"
   },
   {
-    name: "Wagyu Beef Burger",
-    description: "Brioche bun, truffle aioli, aged cheddar, and crispy onions.",
-    price: "$28",
+    name: "Chicken Wings Biriyani",
+    description: "Flavorful biriyani rice topped with succulent, spicy chicken wings.",
+    price: "$25",
     image: {
       src: "https://placehold.co/600x400.png",
-      aiHint: "wagyu burger"
+      aiHint: "chicken biriyani"
     },
     tag: "Fan Favorite"
   },
   {
-    name: "Burrata & Prosciutto",
-    description: "Heirloom tomatoes, balsamic glaze, and fresh basil.",
-    price: "$22",
+    name: "Palakova",
+    description: "A traditional Indian sweet made from solidified, sweetened milk.",
+    price: "$10",
     image: {
       src: "https://placehold.co/600x400.png",
-      aiHint: "burrata prosciutto appetizer"
+      aiHint: "palakova sweet"
     },
-    tag: "Seasonal"
+    tag: "Dessert"
   }
 ];
 
