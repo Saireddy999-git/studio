@@ -6,7 +6,7 @@ export default function Hero() {
   return (
     <section className="relative w-full h-[70vh] min-h-[500px] flex items-center justify-center text-center text-white">
       <Image
-        src="https://placehold.co/1600x900.png"
+        src="https://plus.unsplash.com/premium_photo-1661883237884-263e8de8869b?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cmVzdGF1cmFudHxlbnwwfHwwfHx8MA%3D%3D"
         alt="A beautifully set table at The Savory Spoon"
         fill={true}
         style={{objectFit: 'cover'}}
