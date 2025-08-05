@@ -79,8 +79,7 @@ export default function BookATable() {
 
   const handleTableClick = (tableId: string) => {
     setSelectedTable(tableId);
-    form.setValue("tableId", tableId);
-    form.clearErrors("tableId");
+    form.setValue("tableId", tableId, { shouldValidate: true });
   };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
@@ -231,7 +230,7 @@ export default function BookATable() {
                         render={({ field }) => (
                             <FormItem>
                             <FormLabel>Time</FormLabel>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <Select onValuechange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                     <SelectTrigger>
                                         <SelectValue placeholder="Select a time slot" />
@@ -297,14 +296,16 @@ export default function BookATable() {
                     control={form.control}
                     name="tableId"
                     render={({ field }) => (
-                        <FormItem className="h-0">
+                        <FormItem className="sr-only">
+                          <FormLabel>Selected Table</FormLabel>
                           <FormControl>
-                            <Input type="hidden" {...field} />
+                            <Input {...field} />
                           </FormControl>
-                          <FormMessage className="text-center pt-2" />
                         </FormItem>
                     )}
                 />
+
+                <FormMessage className="text-center text-destructive">{form.formState.errors.tableId?.message}</FormMessage>
 
                 <Button
                   type="submit"

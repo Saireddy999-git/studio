@@ -58,7 +58,7 @@ const tableReservationFlow = ai.defineFlow(
     try {
       await resend.emails.send({
         from: 'Mudu Kalalu <onboarding@resend.dev>',
-        to: ['saichandrareddy@gmail.com'],
+        to: ['saichandrareddy6675@gmail.com'],
         subject: `New Table Reservation: ${input.tableId} for ${input.name}`,
         react: ReservationEmail({
             name: input.name,
