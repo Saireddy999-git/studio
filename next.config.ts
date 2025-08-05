@@ -36,7 +36,7 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'content3.jdmagicbox.com',
+        hostname: 'encrypted-tbn0.gstatic.com',
         port: '',
         pathname: '/**',
       },
@@ -94,6 +94,12 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'content3.jdmagicbox.com',
+        port: '',
+        pathname: '/**',
+      }
     ],
   },
 };

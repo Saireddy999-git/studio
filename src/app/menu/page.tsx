@@ -92,7 +92,7 @@ const menuData = {
       description: "Sweet flatbread stuffed with a delicious filling of lentils and jaggery.",
       price: "₹100",
       image: {
-        src: "https://i.imgur.com/k9D7X8p.jpg",
+        src: "https://vellankifoods.com/cdn/shop/products/bobbatlu_bakshalu.jpg?v=1690019740",
         aiHint: "sweet flatbread",
       },
     },
@@ -103,7 +103,7 @@ const menuData = {
         description: "A traditional, slightly fermented palm wine.",
         price: "₹90",
         image: {
-            src: "https://i.imgur.com/J3v4W5x.jpg",
+            src: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_pFoWphUNhSiCS5fwnNhZ631lRlqrb98iiA&s",
             aiHint: "palm wine"
         }
     }
