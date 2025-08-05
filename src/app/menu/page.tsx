@@ -25,7 +25,7 @@ const menuData = {
       description: "Deep-fried crispy snack made with rice and urad dal batter.",
       price: "₹70",
       image: {
-        src: "https://i.imgur.com/7H4T8lY.jpg",
+        src: "https://i.pinimg.com/736x/97/e1/f1/97e1f11db7d76bcacd76f11b41daba36.jpg",
         aiHint: "fried dumplings",
       },
     },
