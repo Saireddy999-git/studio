@@ -75,7 +75,13 @@ const nextConfig: NextConfig = {
         hostname: 'static.toiimg.com',
         port: '',
         pathname: '/**',
-      }
+      },
+      {
+        protocol: 'https',
+        hostname: 'assets.epicurious.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

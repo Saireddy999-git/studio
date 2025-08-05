@@ -63,7 +63,7 @@ const menuData = {
       description: "A semi-dry and spicy prawn fry cooked with onions and spices.",
       price: "₹420",
       image: {
-        src: "https://i.imgur.com/z6E5P1m.jpg",
+        src: "https://assets.epicurious.com/photos/614b8f5d8d69f1fc17e86281/1:1/w_2560%2Cc_limit/Stir_fried_prawns_FMOL_1.jpg",
         aiHint: "prawn fry",
       },
     },
