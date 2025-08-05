@@ -17,15 +17,15 @@ export default function Contact() {
             <h3 className="text-2xl font-bold font-headline">Get in Touch</h3>
             <div className="flex items-center gap-4">
               <MapPin className="h-6 w-6 text-primary" />
-              <span>123 Culinary Lane, Foodie City, 10101</span>
+              <span>Hyderabad, India</span>
             </div>
             <div className="flex items-center gap-4">
               <Phone className="h-6 w-6 text-primary" />
-              <span>(555) 123-4567</span>
+              <span>+91 7013235224</span>
             </div>
             <div className="flex items-center gap-4">
               <Mail className="h-6 w-6 text-primary" />
-              <span>reservations@savoryspoon.com</span>
+              <span>saichandrareddy@gmail.com</span>
             </div>
             <h3 className="text-2xl font-bold font-headline pt-6">Hours</h3>
             <p><strong>Dinner:</strong> Tuesday - Sunday, 5:00 PM - 10:00 PM</p>
