@@ -1,65 +1,8 @@
 "use client";
 
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { MapPin, Phone, Mail, Loader2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { handleReservation } from "@/ai/flows/reservation-flow";
-
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email.",
-  }),
-});
+import { MapPin, Phone, Mail } from "lucide-react";
 
 export default function Contact() {
-  const { toast } = useToast();
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-    },
-  });
-
-  const { isSubmitting } = form.formState;
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    try {
-      const result = await handleReservation({
-        ...values,
-        message: "General inquiry from contact form.",
-      });
-      toast({
-        title: "Message Sent!",
-        description: result.confirmation,
-      });
-      form.reset();
-    } catch (error) {
-      console.error(error);
-      toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description:
-          "There was a problem sending your message. Please try again.",
-      });
-    }
-  }
-
   return (
     <section id="contact" className="py-12 md:py-24 bg-card">
       <div className="container mx-auto px-4 md:px-6">
@@ -82,46 +25,12 @@ export default function Contact() {
               <Mail className="h-6 w-6 text-primary" />
               <span>saichandrareddy@gmail.com</span>
             </div>
-            <h3 className="text-2xl font-bold font-headline pt-6">Hours</h3>
+          </div>
+          <div>
+            <h3 className="text-2xl font-bold font-headline">Hours</h3>
             <p><strong>Dinner:</strong> Tuesday - Sunday, 5:00 PM - 10:00 PM</p>
             <p><strong>Brunch:</strong> Saturday - Sunday, 11:00 AM - 3:00 PM</p>
             <p>Closed Mondays</p>
-          </div>
-          <div>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Name</FormLabel>
-                      <FormControl>
-                        <Input placeholder="Your Name" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input placeholder="your@email.com" {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button type="submit" className="w-full" disabled={isSubmitting}>
-                   {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-                  {isSubmitting ? 'Sending...' : 'Send Message'}
-                </Button>
-              </form>
-            </Form>
           </div>
         </div>
       </div>
