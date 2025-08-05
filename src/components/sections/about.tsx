@@ -16,12 +16,12 @@ export default function About() {
           </div>
           <div className="w-full h-full flex justify-center">
              <Image
-                src="https://placehold.co/600x800.png"
+                src="https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="The elegant interior of The Savory Spoon"
                 width={500}
                 height={700}
                 className="rounded-lg shadow-xl object-cover"
-                data-ai-hint="posh restaurant interior"
+                data-ai-hint="elegant restaurant interior"
             />
           </div>
         </div>
