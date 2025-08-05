@@ -45,7 +45,7 @@ const menuData = {
       description: "Flavorful country chicken curry in a traditional tamarind-based gravy.",
       price: "₹350",
        image: {
-        src: "https://i.imgur.com/wV1pQ9R.jpg",
+        src: "https://vismaifood.com/storage/app/uploads/public/01b/0b1/a09/thumb__700_0_0_0_auto.jpg",
         aiHint: "chicken curry",
       },
     },
