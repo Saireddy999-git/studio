@@ -7,7 +7,7 @@ const menuData = {
       description: "A crispy crepe made from green gram, served with ginger chutney.",
       price: "₹80",
       image: {
-        src: "https://i.imgur.com/G5g2U0a.jpg",
+        src: "https://i0.wp.com/www.chitrasfoodbook.com/wp-content/uploads/2022/07/pesarattu-allam-pachadi-1.jpg?ssl=1",
         aiHint: "pesarattu dosa",
       },
     },
