@@ -10,7 +10,7 @@ export function Logo() {
         <Sparkle className="h-3 w-3" />
       </div>
       <span className="text-2xl font-headline font-bold text-primary">
-        Mudu Kalalu
+        b s
       </span>
     </Link>
   );
