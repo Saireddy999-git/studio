@@ -53,7 +53,7 @@ const reservationFlow = ai.defineFlow(
     initializeResend();
     try {
       await resend.emails.send({
-        from: 'b s <onboarding@resend.dev>',
+        from: 'BS <onboarding@resend.dev>',
         to: ['saichandrareddy6675@gmail.com'],
         subject: `New Reservation Request from ${input.name}`,
         react: ReservationEmail({
