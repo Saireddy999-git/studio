@@ -296,16 +296,15 @@ export default function BookATable() {
                     control={form.control}
                     name="tableId"
                     render={({ field }) => (
-                        <FormItem className="sr-only">
-                          <FormLabel>Selected Table</FormLabel>
+                        <FormItem>
+                          <FormLabel className="sr-only">Selected Table</FormLabel>
                           <FormControl>
-                            <Input {...field} />
+                            <Input {...field} className="sr-only" />
                           </FormControl>
+                           <FormMessage className="text-center text-destructive" />
                         </FormItem>
                     )}
                 />
-
-                <FormMessage className="text-center text-destructive">{form.formState.errors.tableId?.message}</FormMessage>
 
                 <Button
                   type="submit"
@@ -325,3 +324,5 @@ export default function BookATable() {
     </section>
   );
 }
+
+    
