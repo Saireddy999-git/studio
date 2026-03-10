@@ -6,7 +6,7 @@ import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
 
 export const metadata: Metadata = {
-  title: 'BS',
+  title: 'Kadapa Reddy',
   description: 'Exquisite dining, memorable moments.',
 };
 
