@@ -33,6 +33,7 @@ import { format } from "date-fns";
 import { Calendar as CalendarIcon, Loader2, User, Users } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { handleTableReservation } from "@/ai/flows/table-reservation-flow";
+import { supabase } from "@/lib/supabaseClient";
 
 const tables = [
   // 2-person tables
@@ -84,23 +85,45 @@ export default function BookATable() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
+      // 1. Save to Supabase
+      const { error: supabaseError } = await supabase
+        .from('reservations')
+        .insert([
+          {
+            name: values.name,
+            email: values.email,
+            guests: parseInt(values.guests, 10),
+            date: format(values.date, "yyyy-MM-dd"),
+            time: values.time,
+            table_id: values.tableId,
+          },
+        ]);
+
+      if (supabaseError) {
+        throw supabaseError;
+      }
+
+      // 2. Send email notification (existing functionality)
       const result = await handleTableReservation({
         ...values,
         date: format(values.date, "PPP"),
         guests: parseInt(values.guests, 10),
       });
+
+      // 3. Show success toast and reset form
       toast({
-        title: "Reservation Sent!",
-        description: result.confirmation,
+        title: "Reservation Successful!",
+        description: "Your table has been booked. " + result.confirmation,
       });
       form.reset();
       setSelectedTable(null);
-    } catch (error) {
+
+    } catch (error: any) {
+      console.error("Reservation failed:", error);
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description:
-          "There was a problem with your reservation. Please try again.",
+        description: error.message || "There was a problem with your reservation. Please try again.",
       });
     }
   }
@@ -324,5 +347,3 @@ export default function BookATable() {
     </section>
   );
 }
-
-    
