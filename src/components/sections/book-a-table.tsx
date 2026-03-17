@@ -1,18 +1,22 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { format } from 'date-fns';
+import { Calendar as CalendarIcon, Loader2, User, Users } from 'lucide-react';
+
+import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from '@/components/ui/select';
 import {
   Form,
   FormControl,
@@ -20,44 +24,40 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Calendar } from "@/components/ui/calendar";
+} from '@/components/ui/form';
+import { Calendar } from '@/components/ui/calendar';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-import { Calendar as CalendarIcon, Loader2, User, Users } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
-import { handleTableReservation } from "@/ai/flows/table-reservation-flow";
-import { supabase } from "@/lib/supabaseClient";
+} from '@/components/ui/popover';
+import { useToast } from '@/hooks/use-toast';
+import { supabase } from '@/lib/supabaseClient';
 
 const tables = [
-  // 2-person tables
-  { id: "T1", capacity: 2, position: "top-8 left-8" },
-  { id: "T2", capacity: 2, position: "top-8 left-28" },
-  { id: "T3", capacity: 2, position: "top-8 right-28" },
-  { id: "T4", capacity: 2, position: "top-8 right-8" },
-  // 4-person tables
-  { id: "T5", capacity: 4, position: "top-40 left-8" },
-  { id: "T6", capacity: 4, position: "top-40 right-8" },
-  { id: "T7", capacity: 4, position: "bottom-8 left-1/2 -translate-x-1/2" },
-  // 6-person tables
-  { id: "T8", capacity: 6, position: "bottom-8 left-8" },
-  { id: "T9", capacity: 6, position: "bottom-8 right-8" },
+  { id: 'T1', capacity: 2, position: 'top-8 left-8' },
+  { id: 'T2', capacity: 2, position: 'top-8 left-28' },
+  { id: 'T3', capacity: 2, position: 'top-8 right-28' },
+  { id: 'T4', capacity: 2, position: 'top-8 right-8' },
+  { id: 'T5', capacity: 4, position: 'top-40 left-8' },
+  { id: 'T6', capacity: 4, position: 'top-40 right-8' },
+  { id: 'T7', capacity: 4, position: 'bottom-8 left-1/2 -translate-x-1/2' },
+  { id: 'T8', capacity: 6, position: 'bottom-8 left-8' },
+  { id: 'T9', capacity: 6, position: 'bottom-8 right-8' },
+];
+
+const timeSlots = [
+  '5:00 PM', '5:30 PM', '6:00 PM', '6:30 PM', '7:00 PM',
+  '7:30 PM', '8:00 PM', '8:30 PM', '9:00 PM', '9:30 PM',
 ];
 
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email." }),
-  guests: z.string().min(1, { message: "Please select the number of guests." }),
-  date: z.date({
-    required_error: "A date is required.",
-  }),
-  time: z.string().min(1, { message: "Please select a time." }),
-  tableId: z.string().min(1, { message: "Please select a table." }),
+  name: z.string().min(2, { message: 'Name must be at least 2 characters.' }),
+  email: z.string().email({ message: 'Please enter a valid email.' }),
+  guests: z.string().min(1, { message: 'Please select the number of guests.' }),
+  date: z.date({ required_error: 'A date is required.' }),
+  time: z.string().min(1, { message: 'Please select a time.' }),
+  tableId: z.string().min(1, { message: 'Please select a table from the layout.' }),
 });
 
 export default function BookATable() {
@@ -67,11 +67,11 @@ export default function BookATable() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
-      email: "",
-      guests: "",
-      time: "",
-      tableId: "",
+      name: '',
+      email: '',
+      guests: '',
+      time: '',
+      tableId: '',
     },
   });
 
@@ -79,66 +79,41 @@ export default function BookATable() {
 
   const handleTableClick = (tableId: string) => {
     setSelectedTable(tableId);
-    form.setValue("tableId", tableId, { shouldValidate: true });
+    form.setValue('tableId', tableId, { shouldValidate: true });
   };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      // 1. Save to Supabase
-      const { error: supabaseError } = await supabase
-        .from('reservations')
-        .insert([
-          {
-            name: values.name,
-            email: values.email,
-            guests: parseInt(values.guests, 10),
-            date: format(values.date, "yyyy-MM-dd"),
-            time: values.time,
-            table_id: values.tableId,
-          },
-        ]);
+      const { error } = await supabase.from('reservations').insert([
+        {
+          name: values.name,
+          email: values.email,
+          guests: parseInt(values.guests, 10),
+          date: format(values.date, 'yyyy-MM-dd'),
+          time: values.time,
+          table_id: values.tableId,
+        },
+      ]);
 
-      if (supabaseError) {
-        throw supabaseError;
+      if (error) {
+        throw new Error(`Supabase error: ${error.message}`);
       }
 
-      // 2. Send email notification (existing functionality)
-      const result = await handleTableReservation({
-        ...values,
-        date: format(values.date, "PPP"),
-        guests: parseInt(values.guests, 10),
-      });
-
-      // 3. Show success toast and reset form
       toast({
-        title: "Reservation Successful!",
-        description: "Your table has been booked. " + result.confirmation,
+        title: 'Reservation Successful! 🎉',
+        description: `Your table has been booked. We've sent a confirmation email.`,
       });
       form.reset();
       setSelectedTable(null);
-
     } catch (error: any) {
-      console.error("Reservation failed:", error);
+      console.error('Reservation failed:', error);
       toast({
-        variant: "destructive",
-        title: "Uh oh! Something went wrong.",
-        description: error.message || "There was a problem with your reservation. Please try again.",
+        variant: 'destructive',
+        title: 'Uh oh! Something went wrong.',
+        description: error.message || 'There was a problem with your reservation. Please try again.',
       });
     }
   }
-
-  const timeSlots = [
-    "5:00 PM",
-    "5:30 PM",
-    "6:00 PM",
-    "6:30 PM",
-    "7:00 PM",
-    "7:30 PM",
-    "8:00 PM",
-    "8:30 PM",
-    "9:00 PM",
-    "9:30 PM",
-  ];
 
   return (
     <section id="book-a-table" className="py-12 md:py-24 bg-background">
@@ -152,6 +127,7 @@ export default function BookATable() {
           </p>
         </div>
         <div className="grid md:grid-cols-2 gap-12 items-start">
+          {/* Table Layout */}
           <div>
             <h3 className="text-2xl font-bold font-headline mb-4">
               Restaurant Layout
@@ -163,13 +139,14 @@ export default function BookATable() {
                 return (
                   <button
                     key={table.id}
+                    type="button"
                     onClick={() => handleTableClick(table.id)}
                     className={cn(
-                      "absolute flex flex-col items-center justify-center bg-secondary hover:bg-primary/20 text-secondary-foreground transition-colors",
-                      table.capacity === 2 && "w-16 h-16 rounded-full",
-                      table.capacity === 4 && "w-20 h-20 rounded-md",
-                      table.capacity === 6 && "w-32 h-20 rounded-lg",
-                      isSelected && "bg-primary text-primary-foreground ring-2 ring-offset-2 ring-primary",
+                      'absolute flex flex-col items-center justify-center bg-secondary hover:bg-primary/20 text-secondary-foreground transition-colors',
+                      table.capacity === 2 && 'w-16 h-16 rounded-full',
+                      table.capacity === 4 && 'w-20 h-20 rounded-md',
+                      table.capacity === 6 && 'w-32 h-20 rounded-lg',
+                      isSelected && 'bg-primary text-primary-foreground ring-2 ring-offset-2 ring-primary',
                       table.position
                     )}
                   >
@@ -179,97 +156,105 @@ export default function BookATable() {
                   </button>
                 );
               })}
-               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-muted px-4 py-1 rounded-full text-sm">
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-muted px-4 py-1 rounded-full text-sm">
                 Entrance
-               </div>
+              </div>
             </div>
+            <FormField
+              control={form.control}
+              name="tableId"
+              render={({ field }) => (
+                <FormItem className="mt-2">
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
           </div>
+
+          {/* Reservation Form */}
           <div>
             <h3 className="text-2xl font-bold font-headline mb-4">
               Reservation Details
             </h3>
             <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4"
-              >
-                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <FormField
+              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <FormField
                     control={form.control}
                     name="name"
                     render={({ field }) => (
-                        <FormItem>
+                      <FormItem>
                         <FormLabel>Name</FormLabel>
                         <FormControl>
-                            <Input placeholder="Your Name" {...field} />
+                          <Input placeholder="Your Name" {...field} />
                         </FormControl>
                         <FormMessage />
-                        </FormItem>
+                      </FormItem>
                     )}
-                    />
-                    <FormField
+                  />
+                  <FormField
                     control={form.control}
                     name="email"
                     render={({ field }) => (
-                        <FormItem>
+                      <FormItem>
                         <FormLabel>Email</FormLabel>
                         <FormControl>
-                            <Input placeholder="your@email.com" {...field} />
+                          <Input placeholder="your@email.com" {...field} />
                         </FormControl>
                         <FormMessage />
-                        </FormItem>
+                      </FormItem>
                     )}
-                    />
+                  />
                 </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                   <FormField
-                        control={form.control}
-                        name="guests"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Number of Guests</FormLabel>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <FormControl>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select number of guests" />
-                                    </SelectTrigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                    {[...Array(9)].map((_, i) => (
-                                        <SelectItem key={i + 1} value={`${i + 1}`}>
-                                            {i + 1} Guest{i > 0 && 's'}
-                                        </SelectItem>
-                                    ))}
-                                    </SelectContent>
-                                </Select>
-                            <FormMessage />
-                            </FormItem>
-                        )}
-                        />
-                     <FormField
-                        control={form.control}
-                        name="time"
-                        render={({ field }) => (
-                            <FormItem>
-                            <FormLabel>Time</FormLabel>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                    <FormControl>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select a time slot" />
-                                    </Trigger>
-                                    </FormControl>
-                                    <SelectContent>
-                                    {timeSlots.map(slot => (
-                                        <SelectItem key={slot} value={slot}>
-                                            {slot}
-                                        </SelectItem>
-                                    ))}
-                                    </SelectContent>
-                                </Select>
-                            <FormMessage />
-                            </FormItem>
-                        )}
-                        />
+                  <FormField
+                    control={form.control}
+                    name="guests"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Number of Guests</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select number of guests" />
+                            </Trigger>
+                          </FormControl>
+                          <SelectContent>
+                            {[...Array(9)].map((_, i) => (
+                              <SelectItem key={i + 1} value={`${i + 1}`}>
+                                {i + 1} Guest{i > 0 && 's'}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="time"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Time</FormLabel>
+                        <Select onValueChange={field.onChange} value={field.value}>
+                          <FormControl>
+                            <SelectTrigger>
+                              <SelectValue placeholder="Select a time slot" />
+                            </Trigger>
+                          </FormControl>
+                          <SelectContent>
+                            {timeSlots.map(slot => (
+                              <SelectItem key={slot} value={slot}>
+                                {slot}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
                 </div>
 
                 <FormField
@@ -282,14 +267,14 @@ export default function BookATable() {
                         <PopoverTrigger asChild>
                           <FormControl>
                             <Button
-                              variant={"outline"}
+                              variant={'outline'}
                               className={cn(
-                                "w-full pl-3 text-left font-normal",
-                                !field.value && "text-muted-foreground"
+                                'w-full pl-3 text-left font-normal',
+                                !field.value && 'text-muted-foreground'
                               )}
                             >
                               {field.value ? (
-                                format(field.value, "PPP")
+                                format(field.value, 'PPP')
                               ) : (
                                 <span>Pick a date</span>
                               )}
@@ -302,9 +287,7 @@ export default function BookATable() {
                             mode="single"
                             selected={field.value}
                             onSelect={field.onChange}
-                            disabled={(date) =>
-                              date < new Date(new Date().setHours(0,0,0,0))
-                            }
+                            disabled={(date) => date < new Date(new Date().setHours(0, 0, 0, 0))}
                             initialFocus
                           />
                         </PopoverContent>
@@ -314,29 +297,9 @@ export default function BookATable() {
                   )}
                 />
 
-                <FormField
-                  control={form.control}
-                  name="tableId"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel className="sr-only">Selected Table</FormLabel>
-                      <FormControl>
-                        <Input {...field} className="sr-only" />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                <Button
-                  type="submit"
-                  className="w-full"
-                  disabled={isSubmitting}
-                >
-                  {isSubmitting && (
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                  )}
-                  {isSubmitting ? "Booking..." : "Book Your Table"}
+                <Button type="submit" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+                  {isSubmitting ? 'Booking...' : 'Book Your Table'}
                 </Button>
               </form>
             </Form>
