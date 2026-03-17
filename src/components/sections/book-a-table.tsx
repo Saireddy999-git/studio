@@ -252,11 +252,11 @@ export default function BookATable() {
                         render={({ field }) => (
                             <FormItem>
                             <FormLabel>Time</FormLabel>
-                                <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                <Select onValuechange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                     <SelectTrigger>
                                         <SelectValue placeholder="Select a time slot" />
-                                    </SelectTrigger>
+                                    </Trigger>
                                     </FormControl>
                                     <SelectContent>
                                     {timeSlots.map(slot => (
@@ -319,11 +319,11 @@ export default function BookATable() {
                     name="tableId"
                     render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="sr-only">Selected Table</FormLabel>
-                          <FormControl>
-                            <Input {...field} className="sr-only" />
-                          </FormControl>
-                           <FormMessage className="text-center text-destructive" />
+                            <FormLabel className="sr-only">Selected Table</FormLabel>
+                            <FormControl>
+                                <Input {...field} className="sr-only" />
+                            </FormControl>
+                            <FormMessage className="text-center" />
                         </FormItem>
                     )}
                 />
