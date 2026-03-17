@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -257,7 +256,7 @@ export default function BookATable() {
                                     <FormControl>
                                     <SelectTrigger>
                                         <SelectValue placeholder="Select a time slot" />
-                                    </Trigger>
+                                    </SelectTrigger>
                                     </FormControl>
                                     <SelectContent>
                                     {timeSlots.map(slot => (
