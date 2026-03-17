@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
@@ -252,7 +252,7 @@ export default function BookATable() {
                         render={({ field }) => (
                             <FormItem>
                             <FormLabel>Time</FormLabel>
-                                <Select onValuechange={field.onChange} defaultValue={field.value}>
+                                <Select onValueChange={field.onChange} defaultValue={field.value}>
                                     <FormControl>
                                     <SelectTrigger>
                                         <SelectValue placeholder="Select a time slot" />
@@ -315,17 +315,17 @@ export default function BookATable() {
                 />
 
                 <FormField
-                    control={form.control}
-                    name="tableId"
-                    render={({ field }) => (
-                        <FormItem>
-                            <FormLabel className="sr-only">Selected Table</FormLabel>
-                            <FormControl>
-                                <Input {...field} className="sr-only" />
-                            </FormControl>
-                            <FormMessage className="text-center" />
-                        </FormItem>
-                    )}
+                  control={form.control}
+                  name="tableId"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="sr-only">Selected Table</FormLabel>
+                      <FormControl>
+                        <Input {...field} className="sr-only" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
 
                 <Button
