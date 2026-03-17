@@ -257,7 +257,7 @@ export default function BookATable() {
                                     <FormControl>
                                     <SelectTrigger>
                                         <SelectValue placeholder="Select a time slot" />
-                                    </SelectTrigger>
+                                    </Trigger>
                                     </FormControl>
                                     <SelectContent>
                                     {timeSlots.map(slot => (
